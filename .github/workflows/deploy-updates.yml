@@ -1,0 +1,53 @@
+name: Deploy Updates from Tauri App Releases
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *' # tous les jours à minuit
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        include:
+          - app: yapuka
+            repo: breezeapps/Yapuka
+
+    env:
+      GH_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
+
+    steps:
+      - name: 📦 Checkout this update repo (tauri-updates)
+        uses: actions/checkout@v4
+
+      - name: 🛠️ Install GitHub CLI
+        run: |
+          sudo apt update
+          sudo apt install -y gh
+
+      - name: 🔐 Authenticate GitHub CLI
+        run: echo "${{ secrets.GH_RELEASE_TOKEN }}" | gh auth login --with-token
+
+      - name: 🧠 Get latest release tag
+        id: get-tag
+        run: |
+          tag=$(gh release view --repo "${{ matrix.repo }}" --json tagName -q '.tagName')
+          echo "tag=$tag" >> $GITHUB_OUTPUT
+
+      - name: 📥 Download assets from ${{ matrix.app }}
+        run: |
+          mkdir -p updates/${{ matrix.app }}
+          gh release download ${{ steps.get-tag.outputs.tag }} \
+            --repo "${{ matrix.repo }}" \
+            --dir "updates/${{ matrix.app }}" || echo "No assets to download for ${{ matrix.app }}"
+
+      - name: 🚀 Commit and push updates
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+
+          git add updates/${{ matrix.app }}
+          git commit -m "🔄 Update ${{ matrix.app }} to ${{ steps.get-tag.outputs.tag }}" || echo "Nothing to commit"
+          git push
