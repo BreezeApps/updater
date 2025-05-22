@@ -2,8 +2,8 @@ name: Deploy Updates from Tauri App Releases
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * *' # tous les jours à minuit
+  # schedule:
+  #  - cron: '0 0 * * *' # tous les jours à minuit
 
 jobs:
   deploy:
@@ -28,11 +28,11 @@ jobs:
           sudo apt install -y gh
 
       - name: 🔐 Auth GH CLI + Get tag
+        env:
+            GH_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
         run: |
             tag=$(gh release view --repo "${{ matrix.repo }}" --json tagName -q '.tagName')
             echo "tag=$tag" >> $GITHUB_OUTPUT
-        env:
-            GH_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
 
 
       - name: 🧠 Get latest release tag
