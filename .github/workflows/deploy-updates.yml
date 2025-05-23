@@ -29,7 +29,7 @@ jobs:
 
       - name: 🔐 Auth GH CLI + Get tag
         env:
-            GH_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
         run: |
             tag=$(gh release view --repo "${{ matrix.repo }}" --json tagName -q '.tagName')
             echo "tag=$tag" >> $GITHUB_OUTPUT
@@ -37,19 +37,22 @@ jobs:
 
       - name: 🧠 Get latest release tag
         id: get-tag
+        env:
+            GH_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
         run: |
-          tag=$(gh release view --repo "${{ matrix.repo }}" --json tagName -q '.tagName')
-          echo "tag=$tag" >> $GITHUB_OUTPUT
+            tag=$(gh release view --repo "${{ matrix.repo }}" --json tagName -q '.tagName')
+            echo "tag=$tag" >> $GITHUB_OUTPUT
+
 
       - name: 📥 Download release assets
+        id: download-assets
+        env:
+            GH_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
         run: |
             mkdir -p updates/${{ matrix.app }}
             gh release download ${{ steps.get-tag.outputs.tag }} \
             --repo "${{ matrix.repo }}" \
             --dir "updates/${{ matrix.app }}"
-        env:
-            GH_TOKEN: ${{ secrets.GH_RELEASE_TOKEN }}
-
 
       - name: 🚀 Commit and push updates
         run: |
