@@ -55,10 +55,12 @@ jobs:
             --dir "updates/${{ matrix.app }}"
 
       - name: 🚀 Commit and push updates
-        run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
+        uses: EndBug/add-and-commit@v9
+        with:
+            add: 'updates/${{ matrix.app }}/*'
 
-          git add updates/${{ matrix.app }}
-          git commit -m "🔄 Update ${{ matrix.app }} to ${{ steps.get-tag.outputs.tag }}" || echo "Nothing to commit"
-          git push
+            author_name: Updater Bot
+
+            author_email: marvideomc.pro@gmail.com
+
+            message: 'Update files from Tauri app release ${{ steps.get-tag.outputs.tag }}'
