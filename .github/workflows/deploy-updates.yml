@@ -59,8 +59,4 @@ jobs:
         with:
             add: 'updates/${{ matrix.app }}/*'
 
-            author_name: Updater Bot
-
-            author_email: marvideomc.pro@gmail.com
-
-            message: 'Update files from Tauri app release ${{ steps.get-tag.outputs.tag }}'
+            default_author: github_actions
