@@ -54,6 +54,68 @@ jobs:
             --repo "${{ matrix.repo }}" \
             --dir "updates/${{ matrix.app }}"
 
+      - name: 🧠 Générer latest.json (auto, multiplateforme)
+        run: |
+            cd updates/${{ matrix.app }}
+
+            VERSION="${{ steps.get-tag.outputs.tag }}"
+            VERSION="${VERSION#v}"
+
+            # Dictionnaire nom → plateforme
+            detect_platform() {
+            local file="$1"
+            case "$file" in
+                *.AppImage) echo "linux-x86_64" ;;
+                *.deb) echo "linux-deb-x86_64" ;;
+                *.rpm) echo "linux-rpm-x86_64" ;;
+                *x64-setup.exe|*.exe) echo "windows-x86_64" ;;
+                *.msi) echo "windows-msi-x86_64" ;;
+                *x64.dmg) echo "darwin-x86_64" ;;
+                *aarch64.dmg) echo "darwin-aarch64" ;;
+                *x64.app.tar.gz) echo "darwin-x86_64" ;;
+                *aarch64.app.tar.gz) echo "darwin-aarch64" ;;
+                *) echo "" ;;
+            esac
+            }
+
+            JSON='{
+            "version": "'"$VERSION"'",
+            "platforms": {'
+
+            FIRST=1
+
+            for file in *; do
+            [[ -f "$file" ]] || continue
+            [[ "$file" == *.sig ]] && continue
+
+            platform=$(detect_platform "$file")
+            [[ -z "$platform" ]] && continue
+
+            # Cherche la signature correspondante
+            sig_file="$file.sig"
+            if [[ ! -f "$sig_file" ]]; then
+                sig_file=$(ls *.sig | grep -F "$file.sig" || ls *.sig | head -n 1)
+            fi
+
+            signature=$(cat "$sig_file" 2>/dev/null || echo "")
+
+            if [[ -n "$signature" ]]; then
+                [[ $FIRST -eq 0 ]] && JSON+=","
+                JSON+="
+                \"$platform\": {
+                \"signature\": \"$signature\",
+                \"url\": \"https://breezeapps.marvideo.fr/updates/${{ matrix.app }}/$file\"
+                }"
+                FIRST=0
+            fi
+            done
+
+            JSON+="
+              }
+            }"
+
+            echo "$JSON" > latest.json
+
       - name: 🚀 Commit and push updates
         uses: EndBug/add-and-commit@v9
         with:
