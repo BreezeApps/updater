@@ -1,0 +1,23 @@
+{
+  "version": "0.1.0",
+  "notes": "Améliorations, nouvelles fonctionnalités et corrections de bugs.",
+  "pub_date": "2025-05-22T19:59:41.066Z",
+  "platforms": {
+    "darwin-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSalltcWFLTFM2MVk3ZVlGQkRlY0RpTFF0Y01VU0xWOTkxdldOSG1yUXhCS0Z2dXkzcXB4eXJNc3RlTlN4ZnRnWStLUUQxeUV6M2Z5T0NyMWlMZ0JaME1mZk1BZ2tKWmdBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQ3OTQzNTUyCWZpbGU6WWFwdWthLmFwcC50YXIuZ3oKdmJmYW4wMjV4VTh6SE5GWHVxNnNiS1JRaStnT01ZU0NMK1pVUDlQTml4L2lxcWI3TVMwb1JRS0o5QnRzMngweGl5bmF3RjJtVEF0c3RjL3FDWVY5QkE9PQo=",
+      "url": "https://github.com/BreezeApps/Yapuka/releases/download/v0.1.0/Yapuka_x64.app.tar.gz"
+    },
+    "darwin-aarch64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSalltcWFLTFM2MWNHMmlSekNYVU5VbU8rakxQYSsrZUFpamVmTFo2YlliZytVbGZSdVhWQ1dMT0IzR3dTL2tpQlNRTWE5RDdEczVibjlIbHRpbnE5bTZpc1ZaRFZHVndNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQ3OTQzNTc1CWZpbGU6WWFwdWthLmFwcC50YXIuZ3oKWkRQK3lncjZmT0xHRUZTNXAvZkZQSEh3V3liaS9IMnJMK0xXcVlwKzMrZHd3bmRjVkh2cU9nbU5oZW9EczNLR0RoU1IxZkl2U1A2dnl5S3FnYkRaQnc9PQo=",
+      "url": "https://github.com/BreezeApps/Yapuka/releases/download/v0.1.0/Yapuka_aarch64.app.tar.gz"
+    },
+    "linux-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSalltcWFLTFM2MWJFanhoc1E3c2pDbjNkNzBlMTVOb2daSVo2L1lnVTVPKzU3aE1mWk5HcjJZaTN1bnhYYnpwbUI2Um9wSld5VDJWZUV0TWRhSVovclRTZDJzMDlzN0FNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQ3OTQzNzk5CWZpbGU6WWFwdWthXzAuMS4wX2FtZDY0LkFwcEltYWdlCll2VDFvWm5sU2Z5MVVKeGV1Nm56V0YwRnUyWGZOU0p5Q2VUREgrZFIvTzI1VUZaUjRhTXJQQThpaHpaWExCMW4wTFJkRXkwY1FXVmhkSm9BWi9VZkN3PT0K",
+      "url": "https://github.com/BreezeApps/Yapuka/releases/download/v0.1.0/Yapuka_0.1.0_amd64.AppImage"
+    },
+    "windows-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSalltcWFLTFM2MVhwdGNnZW5OU3ZUQVlYSHA1TlY4bnluT2p4bkwrZCtib2hiSktFeExyRHdKOVljZURpaUpDUkhUMTdPNEsxemJKeEZxRE5MdGhLS0lPL05vYS9PSFFBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQ3OTQzOTc3CWZpbGU6WWFwdWthXzAuMS4wX3g2NF9mci1GUi5tc2kKMXU1TjNWQ3Z0MWt0WVp0SzlNYjcvb2lORkJKSDF6ZEFsb0NKaTI0bDdrS25SRmIvNDZ0cGswdVd3U3VidFlaeE5MaFpNc284NnVXSjk3cTFtUmVYRGc9PQo=",
+      "url": "https://github.com/BreezeApps/Yapuka/releases/download/v0.1.0/Yapuka_0.1.0_x64_fr-FR.msi"
+    }
+  }
+}
