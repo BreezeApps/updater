@@ -52,6 +52,7 @@ jobs:
             mkdir -p updates/${{ matrix.app }}
             gh release download ${{ steps.get-tag.outputs.tag }} \
             --repo "${{ matrix.repo }}" \
+            --skip-existing \
             --dir "updates/${{ matrix.app }}"
 
       - name: 🧠 Générer latest.json (auto, multiplateforme)
