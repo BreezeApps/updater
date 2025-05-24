@@ -2,8 +2,8 @@ name: Deploy Updates from Tauri App Releases
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * *' # tous les jours à minuit
+  repository_dispatch:
+    types: [publish]
 
 jobs:
   deploy:
